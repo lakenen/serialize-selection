@@ -40,11 +40,7 @@ npm install serialize-selection
 
 #### Returns
 
-`save` returns an object with the following properties:
-
-* `start` - the start offset of the selection from the reference node
-* `end` - the end offset of the selection from the reference node
-* `restore` - shortcut method to restore the selection
+`restore` returns a Selection object
 
 
 ```js
@@ -55,9 +51,7 @@ var referenceEl = document.querySelector('.some-element')
 var state = ss.save(referenceEl)
 // state object with start/end properties
 
-state.restore()
-// or
-ss.restore(state, referenceEl)
+var sel = state.restore() // equivalent to ss.restore(state, referenceEl)
 // selection is restored
 ```
 
