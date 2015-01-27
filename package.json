@@ -1,6 +1,6 @@
 {
   "name": "serialize-selection",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Serialize and restore DOM Selections via text offset from a reference Node",
   "main": "index.js",
   "scripts": {

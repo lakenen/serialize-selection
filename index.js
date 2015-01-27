@@ -17,7 +17,6 @@ function restore(state, referenceNode) {
     , node
     , nextNodeCharIndex
     , currentNodeCharIndex = 0
-    , foundStart = false
     , nodes = [referenceNode]
     , sel = window.getSelection()
     , range = document.createRange()
