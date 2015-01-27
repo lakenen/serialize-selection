@@ -58,6 +58,7 @@ test('should save a selection correctly', function (t, el) {
 
   t.equal(state.start, 1)
   t.equal(state.end, 4)
+  t.equal(state.content, 'ell')
   t.end()
 })
 
@@ -74,5 +75,6 @@ test('should restore a selection correctly', function (t, el) {
   t.equal(range.endContainer, el.querySelector('p').firstChild)
   t.equal(range.startOffset, 1)
   t.equal(range.endOffset, 4)
+  t.equal(range.toString(), 'ell')
   t.end()
 })

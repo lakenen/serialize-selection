@@ -8,7 +8,7 @@ function getRange() {
   return document.createRange()
 }
 
-// restore the selection specifiec by the given state and reference node, and
+// restore the selection specified by the given state and reference node, and
 // return the new selection object
 function restore(state, referenceNode) {
   referenceNode = referenceNode || document.body
@@ -64,16 +64,15 @@ function save(referenceNode) {
   var range = getRange()
     , startContainer = range.startContainer
     , startOffset = range.startOffset
-    , length = range.toString().length
-    , state = {}
+    , state = { content: range.toString() }
 
   // move the range to select the contents up to the selection
-  // so we can find its length
+  // so we can find its character offset from the reference node
   range.selectNodeContents(referenceNode)
   range.setEnd(startContainer, startOffset)
 
   state.start = range.toString().length
-  state.end = state.start + length
+  state.end = state.start + state.content.length
 
   // add a shortcut method to restore this selection
   state.restore = restore.bind(null, state, referenceNode)

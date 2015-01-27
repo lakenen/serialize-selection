@@ -25,6 +25,7 @@ npm install serialize-selection
 
 * `start` - the start offset of the selection from the reference node
 * `end` - the end offset of the selection from the reference node
+* `content` - the string content of the saved selection
 * `restore` - shortcut method to restore the selection
 
 
@@ -49,7 +50,7 @@ var ss = require('serialize-selection')
 var referenceEl = document.querySelector('.some-element')
 
 var state = ss.save(referenceEl)
-// state object with start/end properties
+// state object with start/end/content properties
 
 var sel = state.restore() // equivalent to ss.restore(state, referenceEl)
 // selection is restored
