@@ -1,0 +1,24 @@
+{
+  "name": "serialize-selection",
+  "version": "0.1.0",
+  "description": "Serialize and restore DOM Selections via text offset from a reference Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/browserify test/*.js | ./node_modules/.bin/testling"
+  },
+  "author": "Cameron Lakenen <cameron@lakenen.com>",
+  "license": "MIT",
+  "keywords": [
+    "text",
+    "selection",
+    "range",
+    "DOM",
+    "save selection",
+    "restore selection"
+  ],
+  "devDependencies": {
+    "browserify": "^8.1.1",
+    "tape": "^3.4.0",
+    "testling": "^1.7.1"
+  }
+}
