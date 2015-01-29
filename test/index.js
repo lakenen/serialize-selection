@@ -78,3 +78,24 @@ test('should restore a selection correctly', function (t, el) {
   t.equal(range.toString(), 'ell')
   t.end()
 })
+
+test('should ignore text outside reference element', function (t, el) {
+  var sel = window.getSelection()
+    , range = document.createRange()
+    , node
+    , state
+
+  el.innerHTML = '<div>stuff before reference el</div>' + el.innerHTML
+
+  node = el.querySelector('p').firstChild
+  range.setStart(node, 1)
+  range.setEnd(node, 4)
+  sel.addRange(range)
+
+  state = serializeSelection.save(node)
+
+  t.equal(state.start, 1)
+  t.equal(state.end, 4)
+  t.equal(state.content, 'ell')
+  t.end()
+})
