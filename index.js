@@ -1,13 +1,3 @@
-
-// get a range for the current selection if there is one, otherwise create one
-function getRange() {
-  var sel = window.getSelection()
-  if (sel.rangeCount) {
-    return sel.getRangeAt(0)
-  }
-  return document.createRange()
-}
-
 // restore the selection specified by the given state and reference node, and
 // return the new selection object
 function restore(state, referenceNode) {
@@ -61,7 +51,10 @@ function restore(state, referenceNode) {
 function save(referenceNode) {
   referenceNode = referenceNode || document.body
 
-  var range = getRange()
+  var sel = window.getSelection()
+    , range = sel.rangeCount
+        ? sel.getRangeAt(0).cloneRange()
+        : document.createRange()
     , startContainer = range.startContainer
     , startOffset = range.startOffset
     , state = { content: range.toString() }

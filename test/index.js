@@ -44,7 +44,7 @@ function test(msg, fn) {
   tape(msg, setup(fn))
 }
 
-test('should save a selection correctly', function (t, el) {
+test('save() should save a selection correctly', function (t, el) {
   var sel = window.getSelection()
     , range = document.createRange()
     , node = el.querySelector('p').firstChild
@@ -62,7 +62,7 @@ test('should save a selection correctly', function (t, el) {
   t.end()
 })
 
-test('should restore a selection correctly', function (t, el) {
+test('restore() should restore a selection correctly', function (t, el) {
   var sel
     , range
     , node = el.querySelector('p').firstChild
@@ -79,7 +79,7 @@ test('should restore a selection correctly', function (t, el) {
   t.end()
 })
 
-test('should ignore text outside reference element', function (t, el) {
+test('save() should ignore text outside reference element', function (t, el) {
   var sel = window.getSelection()
     , range = document.createRange()
     , node
@@ -97,5 +97,25 @@ test('should ignore text outside reference element', function (t, el) {
   t.equal(state.start, 1)
   t.equal(state.end, 4)
   t.equal(state.content, 'ell')
+  t.end()
+})
+
+test('save() should not muck with the current selection', function (t, el) {
+  var sel = window.getSelection()
+    , range = document.createRange()
+    , node = el.querySelector('p').firstChild
+    , state
+
+  range.setStart(node, 1)
+  range.setEnd(node, 4)
+  sel.addRange(range)
+
+  state = serializeSelection.save(el)
+
+  var range2 = window.getSelection().getRangeAt(0)
+  t.equal(range.startContainer, range2.startContainer)
+  t.equal(range.startOffset, range2.startOffset)
+  t.equal(range.endContainer, range2.endContainer)
+  t.equal(range.endOffset, range2.endOffset)
   t.end()
 })
